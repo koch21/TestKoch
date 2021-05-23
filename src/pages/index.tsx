@@ -1,16 +1,32 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
 //style
 import { Button } from '@material-ui/core'
 import { Container } from '../styles/pages/home'
-import axios from 'axios'
 
 const Home: React.FC = () => {
 
-  //Ref para o numero de respostas
-  const respNum = useRef(null)
+  function getNum() {
+    return localStorage.getItem("userName");
+  }
+
+  function updateHTML() {
+    var num = getNum();
+    document.getElementById("NumRes").innerHTML = num;
+  }
+
+  function myFunction() {
+    // Gets input value
+    var num = document.getElementById("NumRes").value;
+
+    // Saves data to retrieve later
+    localStorage.setItem("numRes", num);
+
+    // Updates HTML
+    updateHTML();
+  }
 
   return (
     <Container>
@@ -21,8 +37,10 @@ const Home: React.FC = () => {
       <main >
         <h1>Conhecimento geral</h1>
         <p>Quantas perguntas quer responder ?
-          <input type="number" ref={respNum} />
-          <Button variant="contained" color="default" >
+          <input id="NumRes" type="number" placeholder="" />
+          <Button variant="contained"
+            color="default"
+            onClick={() => myFunction()}>
             <Link href="/questions"><a>Start</a></Link>
           </Button>
         </p>
