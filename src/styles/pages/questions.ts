@@ -8,26 +8,29 @@ export const Container = styled.div`
 `
 
 export const Answerdiv = styled.div`
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+  height: 9vh;
   justify-content: space-between;
   position: absolute;
+  margin-top: 20px;
 
   h1 {
     font-size: 54px;
     color: ${props => props.theme.colors.primary};
-    margin-top: 6vw;
-    margin-left: 6vw;
+    margin-left: 4vw;
   }
 
   Button {
     background-color: ${props => props.theme.colors.pink};
-    margin-left: 84vw;
-    margin-top: -8vw;
+    margin-right: 4vw;
   }
 `
 
 export const Wrapper = styled.div`
-  margin-top: 20vw;
+  margin-top: 14vw;
 
   p {
     font-size: 22px;
@@ -35,6 +38,5 @@ export const Wrapper = styled.div`
     line-height: 32px;
     margin-top: 20px;
     margin-left: 36px;
-    margin-right: 30px;
   }
 `

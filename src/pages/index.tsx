@@ -36,7 +36,7 @@ const Home: React.FC = () => {
       <main >
         <h1>Conhecimento geral</h1>
         <p>Quantas perguntas quer responder ?
-          <input id="NumRes" min="0" type="number" placeholder="" />
+          <input id="NumRes" min="0" type="number" />
           <Button variant="contained"
             color="default"
             onClick={() => myFunction()}>
