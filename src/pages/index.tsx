@@ -8,15 +8,14 @@ import { Container } from '../styles/pages/home'
 
 const Home: React.FC = () => {
 
+  // Storage number to the other page
   function getNum() {
     return localStorage.getItem("userName");
   }
-
   function updateHTML() {
     var num = getNum();
     document.getElementById("NumRes").innerHTML = num;
   }
-
   function myFunction() {
     // Gets input value
     var num = document.getElementById("NumRes").value;
@@ -37,7 +36,7 @@ const Home: React.FC = () => {
       <main >
         <h1>Conhecimento geral</h1>
         <p>Quantas perguntas quer responder ?
-          <input id="NumRes" type="number" placeholder="" />
+          <input id="NumRes" min="0" type="number" placeholder="" />
           <Button variant="contained"
             color="default"
             onClick={() => myFunction()}>

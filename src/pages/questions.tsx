@@ -3,7 +3,8 @@ import axios from 'axios'
 import Head from 'next/head'
 
 //style
-import { Container, Wrapper } from '../styles/pages/questions'
+import { Container, Wrapper, Answerdiv } from '../styles/pages/questions'
+import { Button } from '@material-ui/core'
 
 import { Answers } from '../components/answers'
 
@@ -23,6 +24,11 @@ const Questions: React.FC = () => {
   };
   useEffect(() => { getQuestions() }, [])
 
+  const cancelNum = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
   return (
     <Container>
       <Head>
@@ -30,7 +36,13 @@ const Questions: React.FC = () => {
       </Head>
 
       <main >
-        <h1>Perguntas</h1>
+        <Answerdiv>
+          <h1>Perguntas</h1>
+          <Button variant="contained"
+            color="default"
+            onClick={() => cancelNum()}>
+            cancel</Button>
+        </Answerdiv>
         <Wrapper>
           {data.map((question, results) => (
             <Answers key={results} {...question} />
