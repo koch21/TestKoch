@@ -45,6 +45,7 @@ const Questions: React.FC = () => {
             <Answers key={results} {...question} {...answer} />
           ))}
         </Wrapper>
+
       </main>
     </Container>
   )
