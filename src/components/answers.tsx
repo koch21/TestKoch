@@ -1,49 +1,59 @@
 import React from "react";
-import { Button } from "@material-ui/core";
-import { useFetch } from "../hooks/useFetch";
-
+import { Checkbox } from "@material-ui/core";
+import { Field, Form, Formik } from "formik";
 // Styles
-import { Container, Answerswrapper } from '../styles/pages/answers'
+import { Container, Answerswrapper, PickRow } from '../styles/pages/answers'
 
 interface Questionsss {
   category: string;
   question: string;
-  answer: string;
+  correct_answer: string;
+  incorrect_answers: string;
 }
 
 export function Answers(props) {
-
-  // Chamada da API
-  const { data } = useFetch<Questionsss[]>(`https://opentdb.com/api.php?amount=`)
-
   // Props
-  const { category, question, answer } = props;
-
-  function setRight(num) {
-    const currentPoint = localStorage.getItem('rightAns')
-    localStorage.clear()
-    localStorage.setItem('rightAns', `${currentPoint + num}`)
-  }
-
-  function checkPoint(answer) {
-    if (answer === data) {
-      setRight(1)
-    } else {
-      setRight(-1)
-    }
-  }
+  const { category, question, correct_answer, incorrect_answers } = props;
 
   return (
     <Container>
       <Answerswrapper>
-        <div className="Answers-id"><h5>{category}</h5></div>
-        <div className="Answers"><p>{question.replace(/&quot;/g, '"').replace(/&#039;/g, '"')}</p></div>
-        <input type="text" id="AnswerRes" value={answer} placeholder="Digite sua resposta aqui" />
-        <Button variant="contained"
-          color="default"
-          onClick={() => checkPoint(answer)}>
-          send
-          </Button>
+        <Formik
+          initialValues={{
+            picked: '',
+          }}
+          onSubmit={async (values) => {
+            await new Promise((r) => setTimeout(r, 500));
+            alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          {({ values }) => (
+            <Form>
+              <div id="my-radio-group" />
+              <div role="group" aria-labelledby="my-radio-group">
+                <h5>{category}</h5>
+                <p>{question.replace(/&quot;/g, '"').replace(/&#039;/g, '"')}</p>
+                <PickRow>
+                  <label>
+                    <Field type="radio" name="picked" value={correct_answer} />
+                    {`${correct_answer.replace(/&quot;/g, '"').replace(/&#039;/g, '"')}`}
+                  </label>
+                  <label>
+                    <Field type="radio" name="picked" value={incorrect_answers[1]} />
+                    {`${incorrect_answers[0].replace(/&quot;/g, '"').replace(/&#039;/g, '"')}`}
+                  </label>
+                  <label>
+                    <Field type="radio" name="picked" value={incorrect_answers[2]} />
+                    {`${incorrect_answers[1].replace(/&quot;/g, '"').replace(/&#039;/g, '"')}`}
+                  </label>
+                  <label>
+                    <Field type="radio" name="picked" value={incorrect_answers[3]} />
+                    {`${incorrect_answers[2].replace(/&quot;/g, '"').replace(/&#039;/g, '"')}`}
+                  </label>
+                </PickRow>
+              </div>
+            </Form>
+          )}</Formik>
       </Answerswrapper>
     </Container>
   );

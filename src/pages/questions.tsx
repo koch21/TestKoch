@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 // Styles
 import { Container, Wrapper, Answerdiv } from '../styles/pages/questions'
@@ -22,11 +23,6 @@ const Questions: React.FC = () => {
 
   const cancelNum = () => {
     localStorage.clear()
-    window.location.reload()
-  }
-
-  if (!data) {
-    return <p>Carregando...</p>
   }
 
   return (
@@ -41,11 +37,12 @@ const Questions: React.FC = () => {
           <Button variant="contained"
             color="default"
             onClick={() => cancelNum()}>
-            Cancel</Button>
+            <Link href="/"><a>Cancel</a></Link>
+          </Button>
         </Answerdiv>
         <Wrapper>
-          {data.map((question, results) => (
-            <Answers key={results} {...question} />
+          {data?.map((question, results, answer) => (
+            <Answers key={results} {...question} {...answer} />
           ))}
         </Wrapper>
       </main>

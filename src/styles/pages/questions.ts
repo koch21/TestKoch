@@ -22,10 +22,13 @@ export const Answerdiv = styled.div`
     color: ${props => props.theme.colors.primary};
     margin-left: 4vw;
   }
-
   Button {
     background-color: ${props => props.theme.colors.pink};
     margin-right: 4vw;
+  }
+  a {
+    color: ${props => props.theme.colors.background};
+    text-decoration: none;
   }
 `
 

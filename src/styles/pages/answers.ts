@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100vw;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-direction: row;
 
@@ -14,39 +14,44 @@ export const Container = styled.div`
   }
 `
 export const Answerswrapper = styled.div`
-  background-color: #202020;
   display: flex;
+  background-color: #202020;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  align-items: flex-start;
+  justify-content: center;
   margin-bottom: 22px;
   border-radius: 30px;
-  width: 60vw;
+  width: 68vw;
+
   h5 {
     color: ${props => props.theme.colors.primary};
     font-family: Inter, Times, serif;
     margin-top: 26px;
+    margin-right: 30px;
+    margin-left: 30px;
   }
   p {
     font-size: 18px;
     font-family: Inter, Times, serif;
     line-height: 32px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
   }
+`
+export const PickRow = styled.div`
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+
   input {
     background-color: ${props => props.theme.colors.text};
-    width: 50vw;
-    height: 40px;
     font-family: Inter, Times, serif;
-    font-weight: 600;
-    padding-left: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 0px;
-  }
-  Button {
-    height: 40px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-right: 3px;
+    margin-left: 10px;
   }
 `
