@@ -42,4 +42,10 @@ export const Wrapper = styled.div`
     margin-top: 20px;
     margin-left: 36px;
   }
+
+  Button {
+    background-color: ${props => props.theme.colors.primary};
+    margin-left: 92vw;
+    margin-bottom: 30px;
+  }
 `

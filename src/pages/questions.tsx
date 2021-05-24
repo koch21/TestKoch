@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -21,8 +21,14 @@ const Questions: React.FC = () => {
 
   const { data } = useFetch<Questionsss[]>(`https://opentdb.com/api.php?amount=`)
 
-  const cancelNum = () => {
+  function cancelNum() {
     localStorage.clear()
+  }
+
+  function finalResult() {
+    const wrongAns = JSON.parse(localStorage.getItem('RightAns'))
+    const ResNum = JSON.parse(localStorage.getItem('numRes'))
+    alert(`Voce acertou ${ResNum - wrongAns} de ${ResNum}`)
   }
 
   return (
@@ -44,8 +50,13 @@ const Questions: React.FC = () => {
           {data?.map((question, results, answer) => (
             <Answers key={results} {...question} {...answer} />
           ))}
+          <Button
+            variant="contained"
+            color="default"
+            type="submit"
+            onClick={finalResult}
+          >Submit</Button>
         </Wrapper>
-
       </main>
     </Container>
   )
