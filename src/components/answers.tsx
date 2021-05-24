@@ -1,29 +1,36 @@
-import { Button } from "@material-ui/core";
 import React from "react";
+import { Button } from "@material-ui/core";
+import { useFetch } from "../hooks/useFetch";
 
-// Style
+// Styles
 import { Container, Answerswrapper } from '../styles/pages/answers'
 
+interface Questionsss {
+  category: string;
+  question: string;
+  answer: string;
+}
+
 export function Answers(props) {
-  const { category, question, answer, correct_answer } = props;
 
-  // Storage answer to the check if its right
-  function getAnswer() {
-    return localStorage.getItem("userName");
+  // Chamada da API
+  const { data } = useFetch<Questionsss[]>(`https://opentdb.com/api.php?amount=`)
+
+  // Props
+  const { category, question, answer } = props;
+
+  function setRight(num) {
+    const currentPoint = localStorage.getItem('rightAns')
+    localStorage.clear()
+    localStorage.setItem('rightAns', `${currentPoint + num}`)
   }
-  function updateHTML() {
-    var Answer = getAnswer();
-    document.getElementById("AnswerRes").innerHTML = Answer;
-  }
-  function myFunction() {
-    // Gets input value
-    var Answer = document.getElementById("AnswerRes").value;
 
-    // Saves data to retrieve later
-    localStorage.setItem("AnswerRes", Answer);
-
-    // Updates HTML
-    updateHTML();
+  function checkPoint(answer) {
+    if (answer === data) {
+      setRight(1)
+    } else {
+      setRight(-1)
+    }
   }
 
   return (
@@ -34,7 +41,7 @@ export function Answers(props) {
         <input type="text" id="AnswerRes" value={answer} placeholder="Digite sua resposta aqui" />
         <Button variant="contained"
           color="default"
-          onClick={() => myFunction()}>
+          onClick={() => checkPoint(answer)}>
           send
           </Button>
       </Answerswrapper>
