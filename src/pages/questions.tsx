@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 // Styles
-import { Container, Wrapper, Answerdiv } from '../styles/pages/questions'
+import { Container, Wrapper, Answerdiv, Buttondiv } from '../styles/pages/questions'
 import { Button } from '@material-ui/core'
 
 import { Answers } from '../components/answers'
@@ -29,6 +29,7 @@ const Questions: React.FC = () => {
     const wrongAns = JSON.parse(localStorage.getItem('RightAns'))
     const ResNum = JSON.parse(localStorage.getItem('numRes'))
     alert(`Voce acertou ${ResNum - wrongAns} de ${ResNum}`)
+    localStorage.clear()
   }
 
   return (
@@ -40,7 +41,8 @@ const Questions: React.FC = () => {
       <main >
         <Answerdiv>
           <h1>Perguntas</h1>
-          <Button variant="contained"
+          <Button
+            variant="contained"
             color="default"
             onClick={() => cancelNum()}>
             <Link href="/"><a>Cancel</a></Link>
@@ -50,13 +52,15 @@ const Questions: React.FC = () => {
           {data?.map((question, results, answer) => (
             <Answers key={results} {...question} {...answer} />
           ))}
+        </Wrapper>
+        <Buttondiv>
           <Button
             variant="contained"
             color="default"
             type="submit"
             onClick={finalResult}
-          >Submit</Button>
-        </Wrapper>
+          ><Link href="/"><a>Submit</a></Link></Button>
+        </Buttondiv>
       </main>
     </Container>
   )
