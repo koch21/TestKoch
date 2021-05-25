@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -8,7 +8,7 @@ import { Container } from '../styles/pages/home'
 
 const Home: React.FC = () => {
 
-  // Storage number to the other page
+  // guarda o valor para outra pagina
   function getNum() {
     return localStorage.getItem("userName");
   }
@@ -17,14 +17,17 @@ const Home: React.FC = () => {
     document.getElementById("NumRes").innerHTML = num;
   }
   function myFunction() {
-    // Gets input value
+    // recebe o valor
     var num = document.getElementById("NumRes").value;
 
-    // Saves data to retrieve later
+    // salva o valor para usar depois
     localStorage.setItem("numRes", num);
 
-    // Updates HTML
+    // att o html
     updateHTML();
+
+    // alerta e deixar a pagina em full para deixar a prova mais animada :)
+    alert("Clique apenas UMA VEZ em cada box para nao ter um resultado errado, e tenha uma boa prova");
   }
 
   return (

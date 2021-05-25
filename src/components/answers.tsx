@@ -38,7 +38,10 @@ export function Answers(props) {
                   .replace(/&eacute;/g, '"')
                   .replace(/&Delta;/g, '"')
                   .replace(/&aacute;/g, '"')
-                  .replace(/&ouml;/g, '"')}</p>
+                  .replace(/&ouml;/g, '"')
+                  .replace(/&amp;/g, '"')
+                  .replace(/&oacute;/g, '"')
+                }</p>
                 <PickRow>
                   {(() => {
                     if (correct_answer === true || false) {
@@ -64,7 +67,9 @@ export function Answers(props) {
                               .replace(/&eacute;/g, '"')
                               .replace(/&Delta;/g, '"')
                               .replace(/&aacute;/g, '"')
-                              .replace(/&ouml;/g, '"')}`}
+                              .replace(/&ouml;/g, '"')
+                              .replace(/&amp;/g, '"')
+                              .replace(/&oacute;/g, '"')}`}
                           </label>
                           <label onChange={() => onSubmit(1)}>
                             <Field type="radio" name="picked" value={incorrect_answers[0]} />
@@ -73,7 +78,9 @@ export function Answers(props) {
                               .replace(/&eacute;/g, '"')
                               .replace(/&Delta;/g, '"')
                               .replace(/&aacute;/g, '"')
-                              .replace(/&ouml;/g, '"')}`}
+                              .replace(/&ouml;/g, '"')
+                              .replace(/&amp;/g, '"')
+                              .replace(/&oacute;/g, '"')}`}
                           </label>
                         </div>
                       )
@@ -94,7 +101,9 @@ export function Answers(props) {
                               .replace(/&eacute;/g, '"')
                               .replace(/&Delta;/g, '"')
                               .replace(/&aacute;/g, '"')
-                              .replace(/&ouml;/g, '"')}`}
+                              .replace(/&ouml;/g, '"')
+                              .replace(/&amp;/g, '"')
+                              .replace(/&oacute;/g, '"')}`}
                           </label>
                           <label onChange={() => onSubmit(1)}>
                             <Field type="radio" name="picked" value={incorrect_answers[2]} />
@@ -103,7 +112,9 @@ export function Answers(props) {
                               .replace(/&eacute;/g, '"')
                               .replace(/&Delta;/g, '"')
                               .replace(/&aacute;/g, '"')
-                              .replace(/&ouml;/g, '"')}`}
+                              .replace(/&ouml;/g, '"')
+                              .replace(/&amp;/g, '"')
+                              .replace(/&oacute;/g, '"')}`}
                           </label>
                         </div>
                       )

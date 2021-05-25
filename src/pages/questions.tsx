@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -19,12 +19,15 @@ interface Questionsss {
 
 const Questions: React.FC = () => {
 
+  // recebendo Api
   const { data } = useFetch<Questionsss[]>(`https://opentdb.com/api.php?amount=`)
 
+  // limpando localstorage
   function cancelNum() {
     localStorage.clear()
   }
 
+  // calculo do resultado final
   function finalResult() {
     const wrongAns = JSON.parse(localStorage.getItem('RightAns'))
     const ResNum = JSON.parse(localStorage.getItem('numRes'))
@@ -62,7 +65,7 @@ const Questions: React.FC = () => {
           ><Link href="/"><a>Submit</a></Link></Button>
         </Buttondiv>
       </main>
-    </Container>
+    </Container >
   )
 }
 
